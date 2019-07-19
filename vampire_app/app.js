@@ -33,12 +33,7 @@ Vampire.collection.insertMany(vampireData, (err, data)=>{
 	mongoose.connection.close();
 })
 
-//I completed 1-3 and 5, just changed the information within
-// this below as everything was the same except
-// ...{victims: {changed what was in here}}...
-Vampire.find({victims: {$gt: 150, $lt: 500}}, (err, vampire)=> {
-	console.log(vampire)
-})
+
 // ### Add some new vampire data
 Vampire.create({
 	name: 'Stella',
@@ -77,11 +72,77 @@ Vampire.create({
 /////////////////////////////////////////////////
 // ### Select by comparison
 
+//I completed 1-5, just changed the information within
+// this below as everything was the same except
+// ...{victims: {changed what was in here}}...$gt,$lt,$lte,$ne
+// Vampire.find({victims: {$gt: 150, $lt: 500}}, (err, vampire)=> {
+// 	console.log(vampire)
+// })
+
+// so close! #4
+// Vampire.find({victims: {$ne: 210234}}, (err, vampires) => {
+// 	if(err){
+// 		console.log(err, '<--err')
+// 	}else{
+// 		console.log(vampires, '<-- vampires')
+// 	}
+// })
+
+
 /////////////////////////////////////////////////
 // ### Select by exists or does not exist
+//commit 2, #4. and 
+
+//find title from Alex the student
+// Vampire.find({
+//     title: {$exists: true}
+//     }, (err, vampires) => {
+//         if(err){
+//             console.log(err, "<--err");
+//         } else {
+//             console.log(vampires, "<-- vampire");
+//         }
+//         mongoose.connection.close();
+// })
+
+// Vampire.find({
+// 	victims: {$exists: false},
+// 	 }, (err, vampires)=>{
+// 	 	if(err){
+// 	 		console.log(err, '<-- err')
+// 	 	}else{
+// 	 		console.log(vampires)
+// 	 	}
+// })
+// Vampire.find({
+// 	title: {$exists: true},
+// 	victims: {$exists: false}
+// 	}, (err, vampires)=> {
+// 		if(err){
+// 			console.log(err, '<-- err')
+// 		}else{
+// 			console.log(vampires, '<-- vampirers')
+// 		}
+// 	})
+Vampire.find({
+	victims: {$exists: true, $nin: 1000}},
+	 (err, vampires)=> {
+		if(err){
+			console.log(err, '<-- err')
+		}else{
+			console.log(vampires, '<-- vampires')
+		}
+	 })
 
 /////////////////////////////////////////////////
 // ### Select with OR
+
+// Vampire.find({$or: [location: 'New York, New York, US'}, {location: 'New Orleans, Louisiana, US']}, 
+// 	(err, locateV) => {
+// 		console.log(locateV);
+// 	});
+
+
 
 /////////////////////////////////////////////////
 //### Select objects that match one of several values
