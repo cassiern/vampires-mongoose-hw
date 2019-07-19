@@ -28,45 +28,45 @@ mongoose.connection.on('error', ()=> {
 // ### Add the vampire data that we gave you
 const vampireData = require('./populateVampires')
 
-Vampire.collection.insertMany(vampireData, (err, data)=>{
-	console.log('added provided vampire data')
-	mongoose.connection.close();
-})
+// Vampire.collection.insertMany(vampireData, (err, data)=>{
+// 	console.log('added provided vampire data')
+// 	mongoose.connection.close();
+// })
 
 
-// ### Add some new vampire data
-Vampire.create({
-	name: 'Stella',
-	age: 700,
-	loves: ['dead puppies', 'roasted pinapple', 'street racing'],
-	location: 'Zimbabwe',
-	gender: 'female',
-	victims: 42
-})
-Vampire.create({
-	name: 'Greta',
-	age: 120,
-	loves: ['dancing in lava', 'chocolate covered squid'],
-	location: 'Vermont, USA',
-	gender: 'female',
-	victims: 11
-})
-Vampire.create({
-	name: 'Greyson',
-	age: 260,
-	loves: ['blowing up things', 'motorcycles', 'shiny objects'],
-	location: 'Netherlands',
-	gender: 'male',
-	victims: 24
-})
-Vampire.create({
-	name: 'General Phelps',
-	age: 801,
-	loves: ['impersonating poeple', 'eating pickled snakes', 'playing life or death black jack'],
-	location: 'Falkland Island',
-	gender: 'male',
-	victims: 199
-})
+// // ### Add some new vampire data
+// Vampire.create({
+// 	name: 'Stella',
+// 	age: 700,
+// 	loves: ['dead puppies', 'roasted pinapple', 'street racing'],
+// 	location: 'Zimbabwe',
+// 	gender: 'female',
+// 	victims: 42
+// })
+// Vampire.create({
+// 	name: 'Greta',
+// 	age: 120,
+// 	loves: ['dancing in lava', 'chocolate covered squid'],
+// 	location: 'Vermont, USA',
+// 	gender: 'female',
+// 	victims: 11
+// })
+// Vampire.create({
+// 	name: 'Greyson',
+// 	age: 260,
+// 	loves: ['blowing up things', 'motorcycles', 'shiny objects'],
+// 	location: 'Netherlands',
+// 	gender: 'male',
+// 	victims: 24
+// })
+// Vampire.create({
+// 	name: 'General Phelps',
+// 	age: 801,
+// 	loves: ['impersonating poeple', 'eating pickled snakes', 'playing life or death black jack'],
+// 	location: 'Falkland Island',
+// 	gender: 'male',
+// 	victims: 199
+// })
 /////////////////////////////////////////////////
 // ## QUERYING
 /////////////////////////////////////////////////
@@ -125,15 +125,15 @@ Vampire.create({
 // 		}
 // 	})
 Vampire.find({
-	victims: {$exists: true, $nin: 1000}},
-	 (err, vampires)=> {
+	$and: [{victims: {$exists: true}}, 
+	{victims: {$gt: 1000}}],
+	 }, (err, vampires)=> {
 		if(err){
 			console.log(err, '<-- err')
 		}else{
 			console.log(vampires, '<-- vampires')
 		}
 	 })
-
 /////////////////////////////////////////////////
 // ### Select with OR
 
