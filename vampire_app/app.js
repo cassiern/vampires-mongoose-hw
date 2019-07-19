@@ -72,13 +72,33 @@ Vampire.create({
 // /////////////////////////////////////////////////
 // // ### Select by comparison
 
-// //I completed 1-5, just changed the information within
-// // this below as everything was the same except
-// // ...{victims: {changed what was in here}}...$gt,$lt,$lte,$ne
-Vampire.find({victims: {$gt: 150, $lt: 500}}, (err, vampire)=> {
-	console.log(vampire)
+Vampire.find({
+	gender: 'female',
+	}, (err, vampires)=> {
+		if(err){
+			console.log(err)
+		}else{
+			console.log(vampires)
+		}
 })
-
+Vampire.find({
+	victims: {$gt: 500},
+	}, (err, vampires) =>{
+	if(err){
+		console.log(err)
+	}else{
+		console.log(vampires)
+	}
+})
+Vampire.find({
+	victims: {$lte: 150}
+}, (err, vampires)=> {
+	if(err){
+		console.log(err)
+	}else{
+		console.log(vampires)
+	}
+})
 Vampire.find({
 	victims: {$not: {$eq: 210234}}
 	},(err, vampires) => {
@@ -87,6 +107,11 @@ Vampire.find({
 	}else{
 		console.log(vampires, '<-- vampires')
 	}
+})
+Vampire.find({
+	victims: {$gt: 150, $lt: 500}
+	}, (err, vampire)=> {
+	console.log(vampire)
 })
 
 
