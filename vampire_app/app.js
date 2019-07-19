@@ -124,23 +124,74 @@ const vampireData = require('./populateVampires')
 // 			console.log(vampires, '<-- vampirers')
 // 		}
 // 	})
-Vampire.find({
-	$and: [{victims: {$exists: true}}, 
-	{victims: {$gt: 1000}}],
-	 }, (err, vampires)=> {
-		if(err){
-			console.log(err, '<-- err')
-		}else{
-			console.log(vampires, '<-- vampires')
-		}
-	 })
+// Vampire.find({
+// 	$and: [{victims: {$exists: true}}, 
+// 	{victims: {$gt: 1000}}],
+// 	 }, (err, vampires)=> {
+// 		if(err){
+// 			console.log(err, '<-- err')
+// 		}else{
+// 			console.log(vampires, '<-- vampires')
+// 		}
+// 	 })
 /////////////////////////////////////////////////
 // ### Select with OR
 
-// Vampire.find({$or: [location: 'New York, New York, US'}, {location: 'New Orleans, Louisiana, US']}, 
-// 	(err, locateV) => {
-// 		console.log(locateV);
+// Vampire.find({
+// 	$or: [{location: 'New York, New York, US'}, 
+// 	{location: 'New Orleans, Louisiana, US'}], 
+// 	}, (err, locateV) => {
+// 		if(err){
+// 			console.log(err, '<-- err')
+// 		}else{
+// 			console.log(locateV, '<-- locateV')
+// 		}
 // 	});
+// Vampire.find({
+// 	$or: [{loves: 'brooding'}, 
+// 	{loves: 'being tragic'}],
+// 	}, (err, vampires)=> {
+// 		if(err){
+// 			console.log(err, '<-- err')
+// 		}else{
+// 			console.log(vampires, '<-- vampires')
+// 		}
+// 	})
+Vampire.find({
+	$or: [{victims: {$gt: 1000}},
+	{loves: 'marshmallows'}],
+	 }, (err, vampires)=> {
+	 	if(err){
+	 		console.log(err, '<-- err')
+	 	}else{
+	 		console.log(vampires, '<-- vampires')
+	 	}
+	 })
+Vampire.find({
+	$or: [{hair_color: 'red'},
+	{eye_color: 'green'}],
+}, (err, vampires)=> {
+	if(err){
+		console.log(err, '<-- err')
+	}else{
+		console.log(vampires, '<-- vampires')
+	}
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
