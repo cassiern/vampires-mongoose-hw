@@ -137,7 +137,6 @@ const vampireData = [
   }
 ]
 
-
 module.exports = vampireData;
 
 
